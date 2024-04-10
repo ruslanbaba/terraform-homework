@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "kaizen-ruslan03" {
 }
 
 resource "aws_iam_user" "user" {
-  for_each = toset (["jenny", "rose", "lisa", "jisoo"]) 
+  for_each = set (["jenny", "rose", "lisa", "jisoo"]) 
   name = each.key 
 }
 
