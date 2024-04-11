@@ -16,10 +16,10 @@ resource "aws_s3_bucket" "kaizen" {
 #terraform import aws_s3_
 #terraform import aws_s3_
 
-resource "aws_s3_bucket" "kaizen-ruslan09" {
+resource "aws_s3_bucket" "kaizen-ruslanb09" {
   bucket_prefix = "kaizen-ruslanb09"
 }
-resource "aws_s3_bucket" "kaizen-ruslan03" {
+resource "aws_s3_bucket" "kaizen-ruslanb03" {
   bucket_prefix = "kaizen-ruslanb03"
 }
 
