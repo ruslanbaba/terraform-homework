@@ -1,18 +1,18 @@
 resource "aws_instance" "ec2_instances" {
-    count = length(var.ec2_instances)
+    for_each = { for instance in var.ec2_instances : instance.name => instance }
 
-    ami          = element(var.ec2_instances, count.index).ami
-    instance_type = element(var.ec2_instances, count.index).instance_type
-    key_name     = "BastionKey"
-    subnet_id    = element(aws_subnet.subnets, count.index).id
+    ami           = each.value.ami
+    instance_type = each.value.instance_type
+    key_name      = "BastionKey"
+    subnet_id     = aws_subnet.subnets[each.key].id
     security_groups = [aws_security_group.kaizen_sg.name]
 
     tags = {
-        Name = element(var.ec2_instances, count.index).name
+        Name = each.key
     }
 
     provisioner "file" {
-        source      = count.index == 0 ? "apache-ubuntu.sh" : "apache-linux.sh"
+        source      = each.key == "Ubuntu" ? "apache-ubuntu.sh" : "apache-linux.sh"
         destination = "/tmp/setup.sh"
     }
 

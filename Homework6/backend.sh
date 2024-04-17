@@ -4,7 +4,6 @@ DYNAMO_TABLE_NAME="terraform-lock-table"
 REGION="us-west-2"
 
 aws s3 mb s3://$BUCKET_NAME --region $REGION
-aws dynam
 
 
 #!/bin/bash
